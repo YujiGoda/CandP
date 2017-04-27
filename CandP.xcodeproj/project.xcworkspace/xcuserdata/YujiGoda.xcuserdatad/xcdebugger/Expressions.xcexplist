@@ -3,10 +3,54 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "TodayViewController.viewDidLoad() -&gt; ():TodayViewController.swift">
+         contextName = "SettingViewController.viewDidLoad() -&gt; ():SettingViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "settingTable.backgroundColor.green">
+            </PersistentString>
+            <PersistentString
+               value = "self.settingTable">
+            </PersistentString>
+            <PersistentString
+               value = "view.backgroundColor">
+            </PersistentString>
+            <PersistentString
+               value = "self.settingTable.sectionIndexColor">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "clipBoard[0]">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SaveNnumberSetViewController.setSaveNumberFortest(selectNumber : Int) -&gt; ():SaveNnumberSetViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.clipBoard.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "saveNnumberSetViewController.(setSaveNumber(selectNumber : Int) -&gt; ()).(closure #1):saveNnumberSetViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "clipBoard">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "saveNnumberSetViewController.setSaveNumber(selectNumber : Int) -&gt; ():saveNnumberSetViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "setData[&quot;saveNumber&quot;]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -15,54 +59,6 @@
          <PersistentStrings>
             <PersistentString
                value = "setData">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ClipEditViewController.saveClipBoard([String]) -&gt; ():ClipEditViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ViewController.viewDidLoad() -&gt; ():ViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "clipBoard">
-            </PersistentString>
-            <PersistentString
-               value = "useDefaults.array(forKey: &quot;clipboard&quot;)">
-            </PersistentString>
-            <PersistentString
-               value = "useDefaults.object(forKey: &quot;clipboard&quot;)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "SettingViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:SettingViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "setMenu[0][3]">
-            </PersistentString>
-            <PersistentString
-               value = "settingTable.bounds.size.height">
-            </PersistentString>
-            <PersistentString
-               value = "settingTable.frame.size.height">
-            </PersistentString>
-            <PersistentString
-               value = "indexPath.row">
-            </PersistentString>
-            <PersistentString
-               value = "setMenu[0][2]">
-            </PersistentString>
-            <PersistentString
-               value = "indexPath.section">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[UITableView _createPreparedCellForGlobalRow:withIndexPath:willDisplay:]:(null)">
-         <PersistentStrings>
-            <PersistentString
-               value = "clipTable">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -90,33 +86,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ViewController.saveClipBoard() -&gt; ():ViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "clipBoard">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:ViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "clipBoard[0]">
-            </PersistentString>
-            <PersistentString
-               value = "indexPath.row">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "saveNnumberSetViewController.setSaveNumber(selectNumber : Int) -&gt; ():saveNnumberSetViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "setData[&quot;saveNumber&quot;]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "TodayViewController.getClipBoard() -&gt; ():TodayViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -125,64 +94,33 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "TodayViewController.saveClipBoard() -&gt; ():TodayViewController.swift">
+         contextName = "SettingViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:SettingViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "UIPasteboard.general.string">
+               value = "setMenu[0][2]">
             </PersistentString>
             <PersistentString
-               value = "clipBoard[1]">
+               value = "settingTable.bounds.size.height">
             </PersistentString>
+            <PersistentString
+               value = "settingTable.frame.size.height">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.section">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "setMenu[0][3]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CandPTests.testAllDelte() -&gt; ():CandPTests.swift">
+         <PersistentStrings>
             <PersistentString
                value = "clipBoard">
-            </PersistentString>
-            <PersistentString
-               value = "board.string.isEmpty">
-            </PersistentString>
-            <PersistentString
-               value = "board.string">
-            </PersistentString>
-            <PersistentString
-               value = "clipboard[0]">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "AppDelegate.application(UIApplication, didFinishLaunchingWithOptions : [UIApplicationLaunchOptionsKey : Any]?) -&gt; Bool:AppDelegate.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "tableCell.textLabel">
-            </PersistentString>
-            <PersistentString
-               value = "tableCell.textLabel.textColor">
-            </PersistentString>
-            <PersistentString
-               value = "viewPropaty.cellTextColor">
-            </PersistentString>
-            <PersistentString
-               value = "viewPropaty.cellTextColor.red">
-            </PersistentString>
-            <PersistentString
-               value = "viewPropaty.backgroundColor">
-            </PersistentString>
-            <PersistentString
-               value = "UIColor.white">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ClipEditViewController.viewDidLoad() -&gt; ():ClipEditViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "setData">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ClipEditViewController.okAction(UIButton) -&gt; ():ClipEditViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "rowOfEditClip">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -192,6 +130,47 @@
             <PersistentString
                value = "clipBoard[0]">
             </PersistentString>
+            <PersistentString
+               value = "clipBoard">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.getClipBoardData() -&gt; ():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "clipBoard[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.saveClipBoard() -&gt; ():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "clipBoard">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.viewDidLoad() -&gt; ():ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "clipBoard">
+            </PersistentString>
+            <PersistentString
+               value = "useDefaults.object(forKey: &quot;clipboard&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "useDefaults.array(forKey: &quot;clipboard&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "self.clipTable">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TodayViewController.viewDidLoad() -&gt; ():TodayViewController.swift">
+         <PersistentStrings>
             <PersistentString
                value = "clipBoard">
             </PersistentString>
@@ -212,23 +191,85 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "SettingViewController.viewDidLoad() -&gt; ():SettingViewController.swift">
+         contextName = "-[UITableView _createPreparedCellForGlobalRow:withIndexPath:willDisplay:]:(null)">
          <PersistentStrings>
             <PersistentString
-               value = "settingTable.backgroundColor.green">
-            </PersistentString>
-            <PersistentString
-               value = "view.backgroundColor">
+               value = "clipTable">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ViewController.getClipBoardData() -&gt; ():ViewController.swift">
+         contextName = "saveNnumberSetViewController.tableView(UITableView, didSelectRowAt : IndexPath) -&gt; ():saveNnumberSetViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "clipBoard[0]">
+               value = "clipBoard">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AppDelegate.application(UIApplication, didFinishLaunchingWithOptions : [UIApplicationLaunchOptionsKey : Any]?) -&gt; Bool:AppDelegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewPropaty.backgroundColor">
+            </PersistentString>
+            <PersistentString
+               value = "tableCell.textLabel.textColor">
+            </PersistentString>
+            <PersistentString
+               value = "viewPropaty.cellTextColor">
+            </PersistentString>
+            <PersistentString
+               value = "UIColor.white">
+            </PersistentString>
+            <PersistentString
+               value = "viewPropaty.cellTextColor.red">
+            </PersistentString>
+            <PersistentString
+               value = "tableCell.textLabel">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ClipEditViewController.viewDidLoad() -&gt; ():ClipEditViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "setData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TodayViewController.saveClipBoard() -&gt; ():TodayViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "clipBoard">
+            </PersistentString>
+            <PersistentString
+               value = "UIPasteboard.general.string">
+            </PersistentString>
+            <PersistentString
+               value = "clipBoard[1]">
+            </PersistentString>
+            <PersistentString
+               value = "board.string.isEmpty">
+            </PersistentString>
+            <PersistentString
+               value = "board.string">
+            </PersistentString>
+            <PersistentString
+               value = "clipboard[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ClipEditViewController.okAction(UIButton) -&gt; ():ClipEditViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "rowOfEditClip">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ClipEditViewController.saveClipBoard([String]) -&gt; ():ClipEditViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

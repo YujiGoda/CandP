@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "947AE9EF54F370806FDD031FA778BA11D6BF679F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "947AE9EF54F370806FDD031FA778BA11D6BF679F" : 9223372036854775807,
+    "565F440B0AC4B59A79C05E9EAD972E9AD6787E0C" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "68F4C8AD-39CB-4811-96A7-88FAA41D465A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "947AE9EF54F370806FDD031FA778BA11D6BF679F" : "CandP\/",
+    "565F440B0AC4B59A79C05E9EAD972E9AD6787E0C" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CandP",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CandP.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/YujiGoda\/TryAppe.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "565F440B0AC4B59A79C05E9EAD972E9AD6787E0C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/YujiGoda\/CandP.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "947AE9EF54F370806FDD031FA778BA11D6BF679F"
+    }
+  ]
+}

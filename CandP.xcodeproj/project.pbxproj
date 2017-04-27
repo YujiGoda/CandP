@@ -9,8 +9,20 @@
 /* Begin PBXBuildFile section */
 		063341711E608C8600134952 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0633416F1E608C8600134952 /* Main.storyboard */; };
 		063341731E609F7C00134952 /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063341721E609F7C00134952 /* Struct.swift */; };
-		063341751E62E2EE00134952 /* saveNnumberSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063341741E62E2ED00134952 /* saveNnumberSetViewController.swift */; };
+		063341751E62E2EE00134952 /* SaveNnumberSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063341741E62E2ED00134952 /* SaveNnumberSetViewController.swift */; };
 		06759F261E6C3C31007F23C1 /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063341721E609F7C00134952 /* Struct.swift */; };
+		069D57821EAC744E001CD532 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A16BA01E59ADBC00E8F91E /* ViewController.swift */; };
+		069D57831EAC744F001CD532 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A16BA01E59ADBC00E8F91E /* ViewController.swift */; };
+		069D57841EAC7503001CD532 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A174CF1E60896D0012C577 /* SettingViewController.swift */; };
+		069D57851EAC7504001CD532 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A174CF1E60896D0012C577 /* SettingViewController.swift */; };
+		069D57861EAC7507001CD532 /* ClipEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A16BE21E59CD9D00E8F91E /* ClipEditViewController.swift */; };
+		069D57871EAC7508001CD532 /* ClipEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A16BE21E59CD9D00E8F91E /* ClipEditViewController.swift */; };
+		069D57881EAC750C001CD532 /* SaveNnumberSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063341741E62E2ED00134952 /* SaveNnumberSetViewController.swift */; };
+		069D57891EAC750D001CD532 /* SaveNnumberSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063341741E62E2ED00134952 /* SaveNnumberSetViewController.swift */; };
+		069D578A1EAC789C001CD532 /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063341721E609F7C00134952 /* Struct.swift */; };
+		069D578B1EAC789D001CD532 /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063341721E609F7C00134952 /* Struct.swift */; };
+		069D578C1EACA1E5001CD532 /* func.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DE067B1EAB58FD005B94BD /* func.swift */; };
+		069D578D1EACA1E6001CD532 /* func.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DE067B1EAB58FD005B94BD /* func.swift */; };
 		06A16B9F1E59ADBC00E8F91E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A16B9E1E59ADBC00E8F91E /* AppDelegate.swift */; };
 		06A16BA11E59ADBC00E8F91E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A16BA01E59ADBC00E8F91E /* ViewController.swift */; };
 		06A16BA61E59ADBC00E8F91E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A16BA51E59ADBC00E8F91E /* Assets.xcassets */; };
@@ -67,7 +79,7 @@
 /* Begin PBXFileReference section */
 		063341701E608C8600134952 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		063341721E609F7C00134952 /* Struct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Struct.swift; path = CandP/Struct.swift; sourceTree = "<group>"; };
-		063341741E62E2ED00134952 /* saveNnumberSetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = saveNnumberSetViewController.swift; sourceTree = "<group>"; };
+		063341741E62E2ED00134952 /* SaveNnumberSetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveNnumberSetViewController.swift; sourceTree = "<group>"; };
 		067E4F611E65BBBC0014EF58 /* clipWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = clipWidget.entitlements; sourceTree = "<group>"; };
 		067E4F621E65BC0C0014EF58 /* CandP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CandP.entitlements; sourceTree = "<group>"; };
 		06A16B9B1E59ADBC00E8F91E /* CandP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandP.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,7 +167,7 @@
 			children = (
 				067E4F621E65BC0C0014EF58 /* CandP.entitlements */,
 				0633416F1E608C8600134952 /* Main.storyboard */,
-				063341741E62E2ED00134952 /* saveNnumberSetViewController.swift */,
+				063341741E62E2ED00134952 /* SaveNnumberSetViewController.swift */,
 				06A16B9E1E59ADBC00E8F91E /* AppDelegate.swift */,
 				06A16BA01E59ADBC00E8F91E /* ViewController.swift */,
 				06A174CF1E60896D0012C577 /* SettingViewController.swift */,
@@ -386,7 +398,7 @@
 			files = (
 				06A16BE31E59CD9D00E8F91E /* ClipEditViewController.swift in Sources */,
 				06A16BA11E59ADBC00E8F91E /* ViewController.swift in Sources */,
-				063341751E62E2EE00134952 /* saveNnumberSetViewController.swift in Sources */,
+				063341751E62E2EE00134952 /* SaveNnumberSetViewController.swift in Sources */,
 				06A16B9F1E59ADBC00E8F91E /* AppDelegate.swift in Sources */,
 				063341731E609F7C00134952 /* Struct.swift in Sources */,
 				06DE067C1EAB58FD005B94BD /* func.swift in Sources */,
@@ -398,7 +410,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				069D578A1EAC789C001CD532 /* Struct.swift in Sources */,
+				069D57861EAC7507001CD532 /* ClipEditViewController.swift in Sources */,
+				069D57821EAC744E001CD532 /* ViewController.swift in Sources */,
 				06A16BB41E59ADBC00E8F91E /* CandPTests.swift in Sources */,
+				069D57841EAC7503001CD532 /* SettingViewController.swift in Sources */,
+				069D578C1EACA1E5001CD532 /* func.swift in Sources */,
+				069D57881EAC750C001CD532 /* SaveNnumberSetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,7 +424,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				069D578B1EAC789D001CD532 /* Struct.swift in Sources */,
+				069D57871EAC7508001CD532 /* ClipEditViewController.swift in Sources */,
+				069D57831EAC744F001CD532 /* ViewController.swift in Sources */,
 				06A16BBF1E59ADBC00E8F91E /* CandPUITests.swift in Sources */,
+				069D57851EAC7504001CD532 /* SettingViewController.swift in Sources */,
+				069D578D1EACA1E6001CD532 /* func.swift in Sources */,
+				069D57891EAC750D001CD532 /* SaveNnumberSetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

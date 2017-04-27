@@ -54,6 +54,23 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if useDefaults.object(forKey: dataPass.useDafaultKey.rawValue) != nil {
+            clipBoard = useDefaults.array(forKey: dataPass.useDafaultKey.rawValue) as! [String]
+        }
+        if useDefaults.object(forKey: dataPass.useDafaultKeyForSetData.rawValue) != nil {
+            setData = useDefaults.dictionary(forKey: dataPass.useDafaultKeyForSetData.rawValue) as! Dictionary<String, Any?>
+        }
+        if let onOff = setData[setDataDictionary.onOffWidget.rawValue] as? Bool {
+            //widget表示有無の設定がある場合
+            if onOff {
+                //widget非表示設定の場合、テーブルを非表示にする
+                clipTable.isHidden = true
+                self.preferredContentSize.height = 1
+            } else {
+                clipTable.isHidden = false
+                self.preferredContentSize.height = 200
+            }
+        }
         //clipTable.frame = self.accessibilityFrame
         saveClipBoard()
         clipTable.reloadData()

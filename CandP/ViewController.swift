@@ -120,6 +120,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //削除ボタンの設定
         //押されるとそのセルの内容を配列:clipBoardから削除
         let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) in
+            checkFixaTextDelete(self.clipBoard[indexPath.row])
             self.clipBoard.remove(at: indexPath.row)
             self.clipTable.reloadData()
             self.useDefaults.set(self.clipBoard, forKey: dataPass.useDafaultKey.rawValue)

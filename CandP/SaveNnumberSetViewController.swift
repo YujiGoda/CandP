@@ -8,21 +8,25 @@
 
 import UIKit
 
-class saveNnumberSetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SaveNnumberSetViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var saveNumberTableOutlet: UITableView!
     
     var useDefaults : UserDefaults = UserDefaults(suiteName: dataPass.useDafaultPass.rawValue)!
     var setData : Dictionary<String, Any?> = [:]
+    var clipBoard : [String] = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = viewPropaty.backgroundColor
-        
         saveNumberTableOutlet.delegate = self
         saveNumberTableOutlet.dataSource = self
         
+        //useDefaultに保存されているクリップボード一覧を取得
+        if useDefaults.object(forKey: dataPass.useDafaultKey.rawValue) != nil {
+            clipBoard = useDefaults.array(forKey: dataPass.useDafaultKey.rawValue) as! [String]
+        }
         //useDefaultに保存されている設定情報を取得
         if useDefaults.object(forKey: dataPass.useDafaultKeyForSetData.rawValue) != nil {
             setData = useDefaults.dictionary(forKey: dataPass.useDafaultKeyForSetData.rawValue) as! Dictionary<String, Any?>
@@ -98,14 +102,29 @@ class saveNnumberSetViewController: UIViewController, UITableViewDelegate, UITab
         default:
             break
         }
-        saveNumberTableOutlet.reloadData()
     }
     
     func setSaveNumber(selectNumber : Int) {
-        setData[setDataDictionary.saveNumber.rawValue] = selectNumber
-        useDefaults.set(setData, forKey: dataPass.useDafaultKeyForSetData.rawValue)
+        let ad = UIAlertController(title: "保存件数", message: "直近に保存された\(selectNumber)件以上の内容は削除されます", preferredStyle: .alert)
+        ad.addAction(UIAlertAction(title: "OK", style: .default, handler: {(action) -> Void in
+            if self.clipBoard.count > selectNumber {
+                self.clipBoard.removeSubrange(selectNumber...self.clipBoard.count-1)
+            }
+            self.setData[setDataDictionary.saveNumber.rawValue] = selectNumber
+            self.useDefaults.set(self.setData, forKey: dataPass.useDafaultKeyForSetData.rawValue)
+            self.useDefaults.set(self.clipBoard, forKey: dataPass.useDafaultKey.rawValue)
+            self.saveNumberTableOutlet.reloadData()
+            }))
+        ad.addAction(UIAlertAction(title: "cancel", style: .default, handler: nil))
+        present(ad, animated: true, completion: nil)
     }
-
     
-
+    func setSaveNumberFortest(selectNumber : Int) {
+        if self.clipBoard.count > selectNumber {
+            self.clipBoard.removeSubrange(selectNumber...self.clipBoard.count-1)
+        }
+        self.setData[setDataDictionary.saveNumber.rawValue] = selectNumber
+        self.useDefaults.set(self.setData, forKey: dataPass.useDafaultKeyForSetData.rawValue)
+        self.useDefaults.set(self.clipBoard, forKey: dataPass.useDafaultKey.rawValue)
+    }
 }

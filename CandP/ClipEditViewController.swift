@@ -53,9 +53,8 @@ class ClipEditViewController: UIViewController, UITextViewDelegate {
         guard var theClipBoards =  clipBoards else {
             return
         }
-        if theClipBoards.count > rowOfEditClip! {
-            theClipBoards[rowOfEditClip!] = clipTextOutlet.text
-        }
+        
+        theClipBoards[rowOfEditClip!] = clipTextOutlet.text
         saveClipBoard(theClipBoards)
         navigationController?.popViewController(animated: true)
     }
@@ -66,9 +65,10 @@ class ClipEditViewController: UIViewController, UITextViewDelegate {
         guard var theClipBoards =  clipBoards else {
             return
         }
-        if theClipBoards.count > rowOfEditClip! {
-            theClipBoards.remove(at: rowOfEditClip!)
-        }
+        
+        checkFixaTextDelete(clipBoard!)
+        theClipBoards.remove(at: rowOfEditClip!)
+        
         saveClipBoard(theClipBoards)
         navigationController?.popViewController(animated: true)
     }

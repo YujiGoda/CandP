@@ -29,7 +29,6 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         if let font = viewPropaty.font {
          self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
         }
-        
         //useDefaultに保存されている設定情報を取得
         if useDefaults.object(forKey: dataPass.useDafaultKeyForSetData.rawValue) != nil {
             setData = useDefaults.dictionary(forKey: dataPass.useDafaultKeyForSetData.rawValue) as! Dictionary<String, Any?>
@@ -108,6 +107,15 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //保存一覧削除関数
     func deleteClip(action: UIAlertAction!) {
+        var clipBoard : [String] = [String]()
+        if useDefaults.object(forKey: dataPass.useDafaultKey.rawValue) != nil {
+            clipBoard = useDefaults.array(forKey: dataPass.useDafaultKey.rawValue) as! [String]
+        }
+        clipBoard.removeAll()
+        setData[setDataDictionary.fixaText.rawValue] = nil
+        useDefaults.set(clipBoard, forKey: dataPass.useDafaultKey.rawValue)
+        useDefaults.set(setData, forKey: dataPass.useDafaultKeyForSetData.rawValue)
+        
         let ac = UIAlertController(title: "保存一覧の削除", message: "削除しました", preferredStyle: .alert)
         ac.addAction((UIAlertAction(title: "OK", style: .default, handler: nil)))
         present(ac, animated: true, completion: nil)
