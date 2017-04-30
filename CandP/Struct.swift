@@ -30,6 +30,7 @@ enum dataPass : String {
     case useDafaultPass = "group.CandPClipData"
     case useDafaultKeyForSetData = "setData"
     case useDafaultKey = "clipboard"
+    case useDefaultKeyForFixaClipData = "fixaClipData"
 }
 
 enum seguePass : String {

@@ -19,11 +19,19 @@ class ClipEditViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var deleteButtonOutlet: UIButton!
     @IBOutlet weak var rowSetButtonOutlet: UIButton!
     
+    
+    //編集中のテキスト
     var clipBoard : String?
+    //編集中の一覧のクリップボード一覧上のインデックス
     var rowOfEditClip : Int?
+    //保護中のクリップボードデータ一覧
+    var fixaClipBoard : Array<String> = []
+    //編集中のテキストが保護中の場合、一覧のインデックスを格納
+    var indexFixaClipBoard : Int?
+    //userDefaultのパス設定
     let useDefaults : UserDefaults = UserDefaults(suiteName: dataPass.useDafaultPass.rawValue)!
-    var setData : Dictionary<String, Any?> = [:]
-    var fixaTextFlg : Bool = false
+    //iPhoneのクリップボード
+    let board = UIPasteboard.general
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,13 +44,11 @@ class ClipEditViewController: UIViewController, UITextViewDelegate {
         buttonView(deleteButtonOutlet)
         buttonView(rowSetButtonOutlet)
         
-        if useDefaults.object(forKey: dataPass.useDafaultKeyForSetData.rawValue) != nil {
-            setData = useDefaults.dictionary(forKey: dataPass.useDafaultKeyForSetData.rawValue) as! Dictionary<String, Any?>
-            if let fixaText = setData[setDataDictionary.fixaText.rawValue] {
-                if clipBoard == fixaText as? String {
-                    rowSetButtonOutlet.setTitle("固定解除", for: .normal)
-                    fixaTextFlg = true
-                }
+        if useDefaults.object(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) != nil {
+            fixaClipBoard = useDefaults.array(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) as! Array<String>
+            if let index = fixaClipBoard.index(of: clipBoard!) {
+                rowSetButtonOutlet.setTitle("固定解除", for: .normal)
+                indexFixaClipBoard = index
             }
         }
     }
@@ -55,7 +61,7 @@ class ClipEditViewController: UIViewController, UITextViewDelegate {
         }
         
         theClipBoards[rowOfEditClip!] = clipTextOutlet.text
-        saveClipBoard(theClipBoards)
+        useDefaults.set(theClipBoards, forKey: dataPass.useDafaultKey.rawValue)
         navigationController?.popViewController(animated: true)
     }
     
@@ -69,31 +75,40 @@ class ClipEditViewController: UIViewController, UITextViewDelegate {
         checkFixaTextDelete(clipBoard!)
         theClipBoards.remove(at: rowOfEditClip!)
         
-        saveClipBoard(theClipBoards)
+        useDefaults.set(theClipBoards, forKey: dataPass.useDafaultKey.rawValue)
         navigationController?.popViewController(animated: true)
     }
     
     //表示行を先頭に固定するボタン
     @IBAction func fixaAction(_ sender: UIButton) {
-        if fixaTextFlg {
-            setData[setDataDictionary.fixaText.rawValue] = nil
-        } else {
-            setData[setDataDictionary.fixaText.rawValue] = clipBoard
-            let clipBoards : [String]? = getClipboardFromUserData()
-            guard var theClipBoards = clipBoards else {
-                return
-            }
-            if let index = theClipBoards.index(of: clipBoard!) {
-                theClipBoards.remove(at: index)
-            }
-            theClipBoards.insert(clipBoard!, at: 0)
-            
-            saveClipBoard(theClipBoards)
+        let clipBoards : [String]? = getClipboardFromUserData()
+        
+        //userDefaultからクリップボードデータ一覧の取得に失敗した場合、エラーを出力してreturn
+        guard var theClipBoards = clipBoards else {
+            print("error, cannot get the clipBoard Data")
+            return
         }
-        useDefaults.set(setData, forKey: dataPass.useDafaultKeyForSetData.rawValue)
+        
+        if indexFixaClipBoard != nil {
+            //保護されている場合
+            //保護一覧から削除してクリップボード一覧の表示位置を保護されている行から保護されていない行まで下げる
+            fixaClipBoard.remove(at: indexFixaClipBoard!)
+            theClipBoards.remove(at: rowOfEditClip!)
+            theClipBoards.insert(clipBoard!, at: fixaClipBoard.count)
+        } else {
+            //保護されていない場合
+            //保護一覧についか
+            fixaClipBoard.append(clipBoard!)
+        }
+        useDefaults.set(theClipBoards, forKey: dataPass.useDafaultKey.rawValue)
+        useDefaults.set(fixaClipBoard, forKey: dataPass.useDefaultKeyForFixaClipData.rawValue)
         navigationController?.popViewController(animated: true)
     }
-        
+    
+    @IBAction func tapBoardAction(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
     func getClipboardFromUserData() -> [String]?{
         var clipBoards : [String]?
         if useDefaults.object(forKey: dataPass.useDafaultKey.rawValue) != nil {
@@ -101,16 +116,7 @@ class ClipEditViewController: UIViewController, UITextViewDelegate {
         }
         return clipBoards
     }
-    
-    @IBAction func tapBoardAction(_ sender: UITapGestureRecognizer) {
-        self.view.endEditing(true)
-    }
-    
-    
-    func saveClipBoard(_ clipBoards : [String]) {
-        
-        useDefaults.set(clipBoards, forKey: dataPass.useDafaultKey.rawValue)
-    }
+
     //returnキーを押した時にキーボードを隠す
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {

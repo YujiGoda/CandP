@@ -13,9 +13,16 @@ class CandPTests: XCTestCase {
     
     let board = UIPasteboard.general
     var clipBoard : Array<String> = []
+    var fixaClipBoard : Array<String> = []
+    var setData : Dictionary<String, Any?> = [:]
     
     override func setUp() {
         super.setUp()
+        
+        //設定情報の初期化
+        let useDefaults : UserDefaults = UserDefaults(suiteName: dataPass.useDafaultPass.rawValue)!
+        useDefaults.set(setData, forKey: dataPass.useDafaultKeyForSetData.rawValue)
+        
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
     }
@@ -25,6 +32,7 @@ class CandPTests: XCTestCase {
         super.tearDown()
     }
     
+    //クリップボード一覧と保護一覧の初期化テスト
     func test1AllDelte() {
         class settingView : SettingViewController {
             override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
@@ -36,8 +44,10 @@ class CandPTests: XCTestCase {
         set.deleteClip(action: UIAlertAction())
         getUserDefaultData()
         XCTAssertEqual(clipBoard, [])
+        XCTAssertEqual(fixaClipBoard, [])
     }
     
+    //テキスト"test1"〜"test30"をクリップボードの順番に格納
     func test2SetClipBoard() {
         let viewController = ViewController()
         for i in 1...30 {
@@ -48,21 +58,54 @@ class CandPTests: XCTestCase {
         XCTAssertEqual(clipBoard.count, 30)
     }
     
-    func test3NumberOfClipBoard() {
-        class saveNumberViewController : SaveNnumberSetViewController {
-            override func viewDidLoad() {
-                //useDefaultに保存されているクリップボード一覧を取得
-                if useDefaults.object(forKey: dataPass.useDafaultKey.rawValue) != nil {
-                    clipBoard = useDefaults.array(forKey: dataPass.useDafaultKey.rawValue) as! [String]
-                }
-            }
-        }
-        let saveNumberView = saveNumberViewController()
-        saveNumberView.viewDidLoad()
-        saveNumberView.setSaveNumberFortest(selectNumber: 25)
-        getUserDefaultData()
-        XCTAssertEqual(clipBoard.count, 25)
-    }
+//    //保存件数設定のテスト
+//    func test3NumberOfClipBoard() {
+//        class saveNumberViewController : SaveNnumberSetViewController {
+//            override func viewDidLoad() {
+//                //useDefaultに保存されているクリップボード一覧を取得
+//                if useDefaults.object(forKey: dataPass.useDafaultKey.rawValue) != nil {
+//                    clipBoard = useDefaults.array(forKey: dataPass.useDafaultKey.rawValue) as! [String]
+//                }
+//            }
+//        }
+//        let saveNumberView = saveNumberViewController()
+//        saveNumberView.viewDidLoad()
+//        saveNumberView.setSaveNumberFortest(selectNumber: 25)
+//        getUserDefaultData()
+//        XCTAssertEqual(clipBoard.count, 25)
+//    }
+//    
+//    func test4SelectTableCell() {
+//        class viewController : ViewController {
+//            override func viewDidLoad() {
+//                //useDefaultに保存されているクリップボード一覧を取得
+//                if useDefaults.object(forKey: dataPass.useDafaultKey.rawValue) != nil {
+//                    clipBoard = useDefaults.array(forKey: dataPass.useDafaultKey.rawValue) as! [String]
+//                }
+//                //保護されているクリップボード一覧を取得
+//                if useDefaults.object(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) != nil {
+//                    fixaClipBoard = useDefaults.array(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) as! Array<String>
+//                }
+//                //useDefaultに保存されている設定情報を取得
+//                if useDefaults.object(forKey: dataPass.useDafaultKeyForSetData.rawValue) != nil {
+//                    setData = useDefaults.dictionary(forKey: dataPass.useDafaultKeyForSetData.rawValue) as! Dictionary<String, Any?>
+//                }
+//                
+//                NotificationCenter.default.addObserver(self, selector: #selector(self.saveClipBoard), name: NSNotification.Name.UIPasteboardChanged, object: nil)
+//                NotificationCenter.default.addObserver(self, selector: #selector(self.returnFormBackbround), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+//            }
+//            override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//                board.setValue(clipBoard[indexPath.row], forPasteboardType: "public.text")
+//            }
+//        }
+//        let view = viewController()
+//        let index = IndexPath.init(row: 1, section: 0)
+//        view.viewDidLoad()
+//        view.tableView(UITableView(), didSelectRowAt: index)
+//        
+//        getUserDefaultData()
+//        XCTAssertEqual(clipBoard[0], "test29")
+//    }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
@@ -75,6 +118,10 @@ class CandPTests: XCTestCase {
         //useDefaultに保存されているクリップボード一覧を取得
         if useDefaults.object(forKey: dataPass.useDafaultKey.rawValue) != nil {
             clipBoard = useDefaults.array(forKey: dataPass.useDafaultKey.rawValue) as! [String]
+        }
+        //保護されているクリップボード一覧を取得
+        if useDefaults.object(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) != nil {
+            fixaClipBoard = useDefaults.array(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) as! Array<String>
         }
     }
     

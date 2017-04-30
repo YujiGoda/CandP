@@ -13,13 +13,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var clipTable: UITableView!
     @IBOutlet weak var settingBarButtonOutlet: UIBarButtonItem!
     
+    //クリップボード一覧
     var clipBoard : [String] = [String]()
-    let useDefaults : UserDefaults = UserDefaults(suiteName: dataPass.useDafaultPass.rawValue)!
+    //保護中のクリップボードデータ一覧
+    var fixaClipBoard : Array<String> = []
+    //設定情報一覧
     var setData : Dictionary<String,Any?> = [:]
+    let useDefaults : UserDefaults = UserDefaults(suiteName: dataPass.useDafaultPass.rawValue)!
     let board = UIPasteboard.general
-    var editClipBoard : String?
-    var rowOfEditClip : Int?
     
+    //ClipEditViewController遷移用
+    var editClipBoard : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +46,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if useDefaults.object(forKey: dataPass.useDafaultKey.rawValue) != nil {
             clipBoard = useDefaults.array(forKey: dataPass.useDafaultKey.rawValue) as! [String]
         }
+        //保護されているクリップボード一覧を取得
+        if useDefaults.object(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) != nil {
+            fixaClipBoard = useDefaults.array(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) as! Array<String>
+        }
         //useDefaultに保存されている設定情報を取得
         if useDefaults.object(forKey: dataPass.useDafaultKeyForSetData.rawValue) != nil {
             setData = useDefaults.dictionary(forKey: dataPass.useDafaultKeyForSetData.rawValue) as! Dictionary<String, Any?>
@@ -57,6 +65,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if useDefaults.object(forKey: dataPass.useDafaultKey.rawValue) != nil {
             clipBoard = useDefaults.array(forKey: dataPass.useDafaultKey.rawValue) as! [String]
         }
+        //保護されているクリップボード一覧を取得
+        if useDefaults.object(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) != nil {
+            fixaClipBoard = useDefaults.array(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) as! Array<String>
+        }
         //useDefaultに保存されている設定情報を取得
         if useDefaults.object(forKey: dataPass.useDafaultKeyForSetData.rawValue) != nil {
             setData = useDefaults.dictionary(forKey: dataPass.useDafaultKeyForSetData.rawValue) as! Dictionary<String, Any?>
@@ -68,7 +80,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if segue.identifier == seguePass.segue1.rawValue {
             let clipEditViewController: ClipEditViewController = segue.destination as! ClipEditViewController
             clipEditViewController.clipBoard = editClipBoard!
-            clipEditViewController.rowOfEditClip = rowOfEditClip
+            clipEditViewController.rowOfEditClip = clipBoard.index(of: editClipBoard!)
         }
     }
     
@@ -111,8 +123,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //編集ボタンの設定
         //押されると編集画面に遷移
         let editButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "編集") { (action, index) -> Void in
-            self.rowOfEditClip = indexPath.row
+            //ClipEditViewController遷移用の変数に格納
             self.editClipBoard = self.clipBoard[indexPath.row]
+            //編集テキストをiPhoneのクリップボードに設定
+            self.board.setValue(self.clipBoard[indexPath.row], forPasteboardType: "public.text")
             self.performSegue(withIdentifier: seguePass.segue1.rawValue, sender: nil)
         }
         editButton.backgroundColor = UIColor.blue
@@ -120,6 +134,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //削除ボタンの設定
         //押されるとそのセルの内容を配列:clipBoardから削除
         let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) in
+            //削除対象テキストが保護対象であれば、保護一覧からも削除
+            if let index = self.fixaClipBoard.index(of: self.clipBoard[index.row]) {
+                self.fixaClipBoard.remove(at: index)
+                self.useDefaults.set(self.fixaClipBoard, forKey: dataPass.useDefaultKeyForFixaClipData.rawValue)
+            }
             checkFixaTextDelete(self.clipBoard[indexPath.row])
             self.clipBoard.remove(at: indexPath.row)
             self.clipTable.reloadData()
@@ -133,41 +152,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func saveClipBoard() {
         if let clip = board.string {
             //クリップボードに値がある場合
-            if let fixaText = setData[setDataDictionary.fixaText.rawValue] as? String {
-                //固定行の設定がある場合
-                if board.string != fixaText{
-                    //固定行の値が現在のクリップボードの値と等しい場合
-                    if let index = clipBoard.index(of: clip) {
-                        //clipBoardの中に現在のクリップボードの値がある場合、削除
-                        clipBoard.remove(at: index)
-                    } else {
-                        //clipBoardの中に現在のクリップボードの値がない場合
-                        if let saveNumber = setData[setDataDictionary.saveNumber.rawValue] as? Int {
-                            //保存件数の最大件数が設定されている場合
-                            if saveNumber == clipBoard.count {
-                                //最大保存件数に達している場合、clipBoardのラスト行を削除
-                                clipBoard.removeLast()
-                            }
-                        }
-                    }
-                    //固定行の設定がある場合、clipBoardの2行目に値をinsert
-                    clipBoard.insert(clip, at: 1)
-                }
+            if fixaClipBoard.index(of: clip) != nil {
+                //保護一覧にクリップボードの値が存在している場合、何もしない
             } else {
-                //固定行の設定がない場合
+                //保護一覧にクリップボードの値が存在していない場合
                 if let index = clipBoard.index(of: clip) {
-                    //固定行の値が現在のクリップボードの値と等しい場合
+                    //clipBoardの中に現在のクリップボードの値がある場合、削除
                     clipBoard.remove(at: index)
-                } else {
+                }else {
                     //clipBoardの中に現在のクリップボードの値がない場合
                     if let saveNumber = setData[setDataDictionary.saveNumber.rawValue] as? Int {
+                        //保存件数の最大件数が設定されている場合
                         if saveNumber == clipBoard.count {
+                            //最大保存件数に達している場合、clipBoardのラスト行を削除
                             clipBoard.removeLast()
                         }
                     }
                 }
-                //固定行の設定がない場合、clipBoardの1行目に値をinsert
-                clipBoard.insert(clip, at: 0)
+                //保護一覧で領域外で先頭行に追加
+                clipBoard.insert(clip, at: fixaClipBoard.count)
             }
             useDefaults.set(clipBoard, forKey: dataPass.useDafaultKey.rawValue)
         } else {
@@ -175,6 +178,5 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             print("no clipboard")
         }
     }
-
 }
 

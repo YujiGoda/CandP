@@ -17,7 +17,12 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     @IBOutlet weak var clipTable: UITableView!
     
     var clipBoard : [String] = [String]()
+    //保護中のクリップボードデータ一覧
+    var fixaClipBoard : Array<String> = []
     var setData : Dictionary<String, Any?> = [:]
+    
+    //テーブルの高さ
+    let heightTable : CGFloat = 175
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +33,10 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         if useDefaults.object(forKey: dataPass.useDafaultKey.rawValue) != nil {
             clipBoard = useDefaults.array(forKey: dataPass.useDafaultKey.rawValue) as! [String]
         }
+        //保護されているクリップボード一覧を取得
+        if useDefaults.object(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) != nil {
+            fixaClipBoard = useDefaults.array(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) as! Array<String>
+        }
         if useDefaults.object(forKey: dataPass.useDafaultKeyForSetData.rawValue) != nil {
             setData = useDefaults.dictionary(forKey: dataPass.useDafaultKeyForSetData.rawValue) as! Dictionary<String, Any?>
         }
@@ -35,18 +44,19 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         //テーブルのセルラインの右側スペース幅を0にする
         self.clipTable.layoutMargins = UIEdgeInsets.zero
         
-        //テーブルの高さを200に設定
-        self.clipTable.frame.size.height = 200
+        //テーブルの高さを175に設定
+        self.clipTable.frame.size.height = heightTable
         
         if let onOff = setData[setDataDictionary.onOffWidget.rawValue] as? Bool {
             //widget表示有無の設定がある場合
             if onOff {
+                clipTable.isHidden = false
+                self.preferredContentSize.height = heightTable
+
+            } else {
                 //widget非表示設定の場合、テーブルを非表示にする
                 clipTable.isHidden = true
                 self.preferredContentSize.height = 1
-            } else {
-                clipTable.isHidden = false
-                self.preferredContentSize.height = 200
             }
         }
         saveClipBoard()
@@ -57,6 +67,10 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         if useDefaults.object(forKey: dataPass.useDafaultKey.rawValue) != nil {
             clipBoard = useDefaults.array(forKey: dataPass.useDafaultKey.rawValue) as! [String]
         }
+        //保護されているクリップボード一覧を取得
+        if useDefaults.object(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) != nil {
+            fixaClipBoard = useDefaults.array(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) as! Array<String>
+        }
         if useDefaults.object(forKey: dataPass.useDafaultKeyForSetData.rawValue) != nil {
             setData = useDefaults.dictionary(forKey: dataPass.useDafaultKeyForSetData.rawValue) as! Dictionary<String, Any?>
         }
@@ -68,7 +82,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                 self.preferredContentSize.height = 1
             } else {
                 clipTable.isHidden = false
-                self.preferredContentSize.height = 200
+                self.preferredContentSize.height = heightTable
             }
         }
         //clipTable.frame = self.accessibilityFrame
@@ -96,6 +110,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         let cell = UITableViewCell()
         cell.textLabel?.text = clipBoard[indexPath.row]
         cell.textLabel!.textColor = UIColor.white
+        cell.textLabel?.font = UIFont(name: "HiraKakuProN-W6", size: 12)
         cell.layoutMargins = UIEdgeInsets.zero
         return cell
     }
@@ -108,41 +123,25 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     func saveClipBoard() {
         if let clip = board.string {
             //クリップボードに値がある場合
-            if let fixaText = setData[setDataDictionary.fixaText.rawValue] as? String {
-                //固定行の設定がある場合
-                if board.string != fixaText{
-                    //固定行の値が現在のクリップボードの値と等しい場合
-                    if let index = clipBoard.index(of: clip) {
-                        //clipBoardの中に現在のクリップボードの値がある場合、削除
-                        clipBoard.remove(at: index)
-                    } else {
-                        //clipBoardの中に現在のクリップボードの値がない場合
-                        if let saveNumber = setData[setDataDictionary.saveNumber.rawValue] as? Int {
-                            //保存件数の最大件数が設定されている場合
-                            if saveNumber == clipBoard.count {
-                                //最大保存件数に達している場合、clipBoardのラスト行を削除
-                                clipBoard.removeLast()
-                            }
-                        }
-                    }
-                    //固定行の設定がある場合、clipBoardの2行目に値をinsert
-                    clipBoard.insert(clip, at: 1)
-                }
+            if fixaClipBoard.index(of: clip) != nil {
+                //保護一覧にクリップボードの値が存在している場合、何もしない
             } else {
-                //固定行の設定がない場合
+                //保護一覧にクリップボードの値が存在していない場合
                 if let index = clipBoard.index(of: clip) {
-                    //固定行の値が現在のクリップボードの値と等しい場合
+                    //clipBoardの中に現在のクリップボードの値がある場合、削除
                     clipBoard.remove(at: index)
-                } else {
+                }else {
                     //clipBoardの中に現在のクリップボードの値がない場合
                     if let saveNumber = setData[setDataDictionary.saveNumber.rawValue] as? Int {
+                        //保存件数の最大件数が設定されている場合
                         if saveNumber == clipBoard.count {
+                            //最大保存件数に達している場合、clipBoardのラスト行を削除
                             clipBoard.removeLast()
                         }
                     }
                 }
-                //固定行の設定がない場合、clipBoardの1行目に値をinsert
-                clipBoard.insert(clip, at: 0)
+                //保護一覧で領域外で先頭行に追加
+                clipBoard.insert(clip, at: fixaClipBoard.count)
             }
             useDefaults.set(clipBoard, forKey: dataPass.useDafaultKey.rawValue)
         } else {
@@ -150,5 +149,4 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
             print("no clipboard")
         }
     }
-    
 }

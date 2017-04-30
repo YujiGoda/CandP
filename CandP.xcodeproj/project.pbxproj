@@ -36,6 +36,9 @@
 		06A16BE31E59CD9D00E8F91E /* ClipEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A16BE21E59CD9D00E8F91E /* ClipEditViewController.swift */; };
 		06A174D01E60896D0012C577 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A174CF1E60896D0012C577 /* SettingViewController.swift */; };
 		06DE067C1EAB58FD005B94BD /* func.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DE067B1EAB58FD005B94BD /* func.swift */; };
+		06E72AF71EB4A60B00ED1923 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A16BA51E59ADBC00E8F91E /* Assets.xcassets */; };
+		06E72AF81EB4A60B00ED1923 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A16BA51E59ADBC00E8F91E /* Assets.xcassets */; };
+		06E72AF91EB4A60C00ED1923 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A16BA51E59ADBC00E8F91E /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -371,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06E72AF71EB4A60B00ED1923 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +382,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06E72AF81EB4A60B00ED1923 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +390,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06E72AF91EB4A60C00ED1923 /* Assets.xcassets in Resources */,
 				06A16BD91E59ADDF00E8F91E /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

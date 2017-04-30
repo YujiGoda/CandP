@@ -9,7 +9,13 @@
 import XCTest
 
 class CandPUITests: XCTestCase {
-        
+    
+    let board = UIPasteboard.general
+    var clipBoard : Array<String> = []
+    var fixaClipBoard : Array<String> = []
+    var setData : Dictionary<String, Any?> = [:]
+    let useDefaults : UserDefaults = UserDefaults(suiteName: dataPass.useDafaultPass.rawValue)!
+    
     override func setUp() {
         super.setUp()
         
@@ -28,23 +34,25 @@ class CandPUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func test3SelectCell() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-//        let app = XCUIApplication()
-//        
-//        let clipBoard = UIPasteboard.general
-//        clipBoard.string = "test3"
-//        
-//        clipBoard.string = "test4"
-//        
-//        app.navigationBars["CandP"].buttons["設定"].tap()
-//        
-//        let candpIcon = XCUIApplication().scrollViews.otherElements.icons["CandP"]
-//        candpIcon.tap()
-//        candpIcon.tap()
+        let tablesQuery = XCUIApplication().tables
+        tablesQuery.staticTexts["test29"].tap()
+        tablesQuery.staticTexts["test28"].tap()
+        tablesQuery.staticTexts["test27"].tap()
         
-        
+    }
+    
+    func getUserDefaultData() {
+        //useDefaultに保存されているクリップボード一覧を取得
+        if useDefaults.object(forKey: dataPass.useDafaultKey.rawValue) != nil {
+            clipBoard = useDefaults.array(forKey: dataPass.useDafaultKey.rawValue) as! [String]
+        }
+        //保護されているクリップボード一覧を取得
+        if useDefaults.object(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) != nil {
+            fixaClipBoard = useDefaults.array(forKey: dataPass.useDefaultKeyForFixaClipData.rawValue) as! Array<String>
+        }
     }
 }

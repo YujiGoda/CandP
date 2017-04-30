@@ -42,7 +42,7 @@
         <!--保存件数-->
         <scene sceneID="K0p-ok-9LG">
             <objects>
-                <viewController id="dfJ-hB-Pkq" customClass="saveNnumberSetViewController" customModule="CandP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dfJ-hB-Pkq" customClass="SaveNnumberSetViewController" customModule="CandP" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VjX-Xt-ddZ"/>
                         <viewControllerLayoutGuide type="bottom" id="dKY-Lk-74m"/>

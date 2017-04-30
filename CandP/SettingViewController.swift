@@ -76,7 +76,8 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if let onoff = setData[setDataDictionary.onOffWidget.rawValue] as? Bool {
                     onoffSwitch.isOn = onoff
                 } else {
-                    onoffSwitch.isOn = false
+                    //デフォルトではwidgetに表示
+                    onoffSwitch.isOn = true
                 }
                 onoffSwitch.addTarget(self, action: #selector(SettingViewController.onoffWidgetAction), for: UIControlEvents.valueChanged)
                 cell.accessoryView = onoffSwitch
@@ -107,14 +108,11 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //保存一覧削除関数
     func deleteClip(action: UIAlertAction!) {
-        var clipBoard : [String] = [String]()
-        if useDefaults.object(forKey: dataPass.useDafaultKey.rawValue) != nil {
-            clipBoard = useDefaults.array(forKey: dataPass.useDafaultKey.rawValue) as! [String]
-        }
-        clipBoard.removeAll()
-        setData[setDataDictionary.fixaText.rawValue] = nil
+        let clipBoard : [String] = []
+        let fixaClipBaord : [String] = []
+        //初期値のclipBoardとfixaClipBoardをuserDefaultに保存
         useDefaults.set(clipBoard, forKey: dataPass.useDafaultKey.rawValue)
-        useDefaults.set(setData, forKey: dataPass.useDafaultKeyForSetData.rawValue)
+        useDefaults.set(fixaClipBaord, forKey: dataPass.useDefaultKeyForFixaClipData.rawValue)
         
         let ac = UIAlertController(title: "保存一覧の削除", message: "削除しました", preferredStyle: .alert)
         ac.addAction((UIAlertAction(title: "OK", style: .default, handler: nil)))

@@ -20,6 +20,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "CandPTests.test4SelectTableCell() -&gt; ():CandPTests.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:ViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -27,6 +35,14 @@
             </PersistentString>
             <PersistentString
                value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CandPUITests.getUserDefaultData() -&gt; ():CandPUITests.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "clipBoard">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -60,6 +76,9 @@
             <PersistentString
                value = "setData">
             </PersistentString>
+            <PersistentString
+               value = "fixaClipBoard">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -86,6 +105,22 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "CandPTests.getUserDefaultData() -&gt; ():CandPTests.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "clipBoard">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CandPUITests.test3SelectCell() -&gt; ():CandPUITests.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "clipBoard">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "TodayViewController.getClipBoard() -&gt; ():TodayViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -97,7 +132,7 @@
          contextName = "SettingViewController.tableView(UITableView, cellForRowAt : IndexPath) -&gt; UITableViewCell:SettingViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "setMenu[0][2]">
+               value = "setMenu[0][3]">
             </PersistentString>
             <PersistentString
                value = "settingTable.bounds.size.height">
@@ -109,10 +144,10 @@
                value = "indexPath.section">
             </PersistentString>
             <PersistentString
-               value = "indexPath.row">
+               value = "setMenu[0][2]">
             </PersistentString>
             <PersistentString
-               value = "setMenu[0][3]">
+               value = "indexPath.row">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -148,6 +183,9 @@
          <PersistentStrings>
             <PersistentString
                value = "clipBoard">
+            </PersistentString>
+            <PersistentString
+               value = "fixaClipBoard">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -210,7 +248,7 @@
          contextName = "AppDelegate.application(UIApplication, didFinishLaunchingWithOptions : [UIApplicationLaunchOptionsKey : Any]?) -&gt; Bool:AppDelegate.swift">
          <PersistentStrings>
             <PersistentString
-               value = "viewPropaty.backgroundColor">
+               value = "tableCell.textLabel">
             </PersistentString>
             <PersistentString
                value = "tableCell.textLabel.textColor">
@@ -222,10 +260,10 @@
                value = "UIColor.white">
             </PersistentString>
             <PersistentString
-               value = "viewPropaty.cellTextColor.red">
+               value = "viewPropaty.backgroundColor">
             </PersistentString>
             <PersistentString
-               value = "tableCell.textLabel">
+               value = "viewPropaty.cellTextColor.red">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
